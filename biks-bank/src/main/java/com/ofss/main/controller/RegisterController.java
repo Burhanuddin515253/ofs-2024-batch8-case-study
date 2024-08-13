@@ -19,7 +19,16 @@ public class RegisterController {
 	RegistrationService registrationService;
 	@PostMapping("register")
 	public ResponseEntity<String> addCustomer(@RequestBody Customer customer) {
+		System.out.println(customer);
 		return ResponseEntity.ok(registrationService.register(customer));
 		
 	}
+	
+	@PostMapping("login")
+	public ResponseEntity<String> loginCustomer(@RequestBody Customer customer){
+		System.out.println(customer);
+		return ResponseEntity.ok(registrationService.login(customer.getCustomerLoginId(), customer.getCustomer_password()));
+	}
 }
+
+

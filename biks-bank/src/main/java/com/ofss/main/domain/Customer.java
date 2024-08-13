@@ -1,5 +1,7 @@
 package com.ofss.main.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,6 +12,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name="Customer")
+
 public class Customer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,9 +21,10 @@ public class Customer {
 	@Column(name="customer_name")
     private String customer_name;
 	@Column(name="customer_email")
-    private String email;
+	@JsonProperty
+    private String customer_email;
 	@Column(name="customer_login_id")
-    private String customer_login_id;
+    private String customerLoginId;
 	@Column(name="customer_password")
     private String customer_password;
 	@Column(name="customer_phone")
@@ -42,11 +46,11 @@ public class Customer {
     
 
     
-    public Customer(String customer_name, String email, String customer_login_id, String customer_password,
+    public Customer(String customer_name, String customer_email, String customer_login_id, String customer_password,
             String customer_phone, String customer_address, String customer_state, String customer_country) {
         this.customer_name = customer_name;
-        this.email = email;
-        this.customer_login_id = customer_login_id;
+        this.customer_email = customer_email;
+        customerLoginId = customer_login_id;
         this.customer_password = customer_password;
         this.customer_phone = customer_phone;
         this.customer_address = customer_address;
@@ -54,10 +58,10 @@ public class Customer {
         this.customer_country = customer_country;
     }
     
-    public Customer(String customer_login_id, String customer_password) {
-    	this.customer_login_id = customer_login_id;
-        this.customer_password = customer_password;
-    }
+//    public Customer(String customer_login_id, String customer_password) {
+//    	customerLoginId = customer_login_id;
+//        this.customer_password = customer_password;
+//    }
     public int getCustomer_id() {
         return customer_id;
     }
@@ -71,16 +75,16 @@ public class Customer {
         this.customer_name = customer_name;
     }
     public String getEmail() {
-        return email;
+        return customer_email;
     }
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmail(String customer_email) {
+        this.customer_email = customer_email;
     }
-    public String getCustomer_login_id() {
-        return customer_login_id;
+    public String getCustomerLoginId() {
+        return customerLoginId;
     }
     public void setCustomer_login_id(String customer_login_id) {
-        this.customer_login_id = customer_login_id;
+        this.customerLoginId = customer_login_id;
     }
     public String getCustomer_password() {
         return customer_password;
@@ -123,7 +127,20 @@ public class Customer {
     }
     public void setCustomer_country(String customer_country) {
         this.customer_country = customer_country;
-    }  
+    }
+
+
+
+	@Override
+	public String toString() {
+		return "Customer [customer_id=" + customer_id + ", customer_name=" + customer_name + ", customer_email="
+				+ customer_email + ", customerLoginId=" + customerLoginId + ", customer_password=" + customer_password
+				+ ", customer_phone=" + customer_phone + ", customer_address=" + customer_address + ", customer_status="
+				+ customer_status + ", customer_state=" + customer_state + ", login_attempts=" + login_attempts
+				+ ", customer_country=" + customer_country + "]";
+	}
+    
+    
 
     
 }

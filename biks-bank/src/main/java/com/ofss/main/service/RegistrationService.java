@@ -11,7 +11,7 @@ public interface RegistrationService {
 
     public String register(Customer customer);
 
-//    public String login(String customer_login_id, String customer_password);
+    public String login(String customer_login_id, String customer_password);
 //
 //    List<Customer> getAllCustomer();
  

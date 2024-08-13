@@ -16,4 +16,6 @@ public interface RegistrationRepo extends CrudRepository<Customer, Integer>{
 //
 //
 //    List<Customer> getAllCustomer();
+	
+	List<Customer> findByCustomerLoginId(String customer_login_id);
 }

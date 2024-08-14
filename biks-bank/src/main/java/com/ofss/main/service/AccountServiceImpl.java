@@ -18,7 +18,7 @@ import com.ofss.main.repository.*;
 public class AccountServiceImpl implements AccountService{
 	@Autowired
 	RegistrationRepo registerRepo;
-	@Autowired
+	@Autowired								
 	AccountRepo accountRepo;
 	
 	public List<Account> listOfAccount(int customer_id) {
@@ -34,6 +34,10 @@ public class AccountServiceImpl implements AccountService{
 	
 	public String createAccount(Account account) {
         try {
+        	Optional<Customer> optionalcustomer = registerRepo.findById(account.getCustomer().getCustomer_id());
+        	Customer customer = optionalcustomer.get(); 
+        	System.out.println("customers are: "+customer);
+        	account.setCustomer(customer);
             accountRepo.save(account);
             System.out.println("account created");
             return "true";  

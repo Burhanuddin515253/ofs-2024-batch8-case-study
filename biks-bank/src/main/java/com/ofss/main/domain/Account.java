@@ -8,6 +8,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table; 
 
@@ -18,11 +20,11 @@ public class Account {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="account_id")
     private int accountId;
-	@OneToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "customer_id")
     private Customer customer;
 	@Column(name="account_type")
-    private String accounType;
+    private String accountType;
 	@Column(name="account_rate")
     private double accountRate;
 	@Column(name="account_balance")
@@ -43,7 +45,7 @@ public class Account {
 		super();
 		this.accountId = accountId;
 		this.customer = customer;
-		this.accounType = accounType;
+		this.accountType = accounType;
 		this.accountRate = accountRate;
 		this.accountBalance = accountBalance;
 		this.accountMinimumBalance = accountMinimumBalance;
@@ -67,12 +69,12 @@ public class Account {
 		this.customer = customer;
 	}
 
-	public String getAccounType() {
-		return accounType;
+	public String getAccountType() {
+		return accountType;
 	}
 
-	public void setAccounType(String accounType) {
-		this.accounType = accounType;
+	public void setAccountType(String accounType) {
+		this.accountType = accounType;
 	}
 
 	public double getAccountRate() {
@@ -117,11 +119,13 @@ public class Account {
 
 	@Override
 	public String toString() {
-		return "Account [accountId=" + accountId + ", customer=" + customer + ", accounType=" + accounType
+		return "Account [accountId=" + accountId + ", customer=" + customer + ", accountType=" + accountType
 				+ ", accountRate=" + accountRate + ", accountBalance=" + accountBalance + ", accountMinimumBalance="
 				+ accountMinimumBalance + ", accountStatus=" + accountStatus + ", overdraftAmount=" + overdraftAmount
 				+ "]";
 	}
+	
+	
 	
 	
 	

@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ofss.main.domain.Account;
 import com.ofss.main.domain.Customer;
+import com.ofss.main.domain.Transaction;
 import com.ofss.main.service.AccountService;
 import com.ofss.main.service.RegistrationService;
+import com.ofss.main.service.TransactionService;
 
 
 @RestController
@@ -27,6 +29,8 @@ public class RegisterController {
 	private AccountService accountService;
 	@Autowired
 	private RegistrationService registrationService;
+	@Autowired
+	private TransactionService transactionService;
 	
 	
 	
@@ -51,6 +55,11 @@ public class RegisterController {
 	@GetMapping("allaccounts/{id}")
 	public List<Account> allAccounts(@PathVariable int id){
 		return accountService.listOfAccount(id);
+	}
+	
+	@PostMapping("transaction")
+	public String transact(@RequestBody Transaction transaction) {
+		return transactionService.transact(transaction);
 	}
 	
 	

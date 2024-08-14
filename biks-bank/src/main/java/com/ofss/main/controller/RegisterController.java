@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ofss.main.domain.Account;
+import com.ofss.main.domain.Cheque;
 import com.ofss.main.domain.Customer;
 import com.ofss.main.domain.Transaction;
 import com.ofss.main.service.AccountService;
+import com.ofss.main.service.ChequeService;
 import com.ofss.main.service.RegistrationService;
 import com.ofss.main.service.TransactionService;
 
@@ -31,6 +33,8 @@ public class RegisterController {
 	private RegistrationService registrationService;
 	@Autowired
 	private TransactionService transactionService;
+	@Autowired
+	private ChequeService chequeService;
 	
 	
 	
@@ -61,6 +65,19 @@ public class RegisterController {
 	public String transact(@RequestBody Transaction transaction) {
 		return transactionService.transact(transaction);
 	}
+	
+	@GetMapping("alltransactions/{id}")
+	public List<Transaction> allTransactions(@PathVariable int id){
+		return transactionService.listOfTransaction(id);
+	}
+	
+	@PostMapping("cheque")
+	public String newCheque(@RequestBody Cheque cheque) {
+		return chequeService.createCheque(cheque);
+	}
+	
+	
+	
 	
 	
 	

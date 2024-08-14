@@ -2,75 +2,103 @@ package com.ofss.main.domain;
 
 import java.time.LocalDateTime;
 
-public class Cheque {
-    private int cheque_id;
-    private String cheque_status;
-    private Account cheque_payee_account;
-    private Account cheque_payer_account;
-    private double cheque_amount;
-    private LocalDateTime cheque_date;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
-    
-    
-    
+@Entity
+@Table(name="Cheque")
+public class Cheque {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="cheque_id")
+    private int chequeId;
+	@Column(name="cheque_status")
+    private String chequeStatus;
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "payee_account_id")
+    private Account chequePayeeAccount;
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "payer_account_id")
+    private Account chequePayerAccount;
+    @Column(name="cheque_amount")
+    private double chequeAmount;
+    @Column(name="cheque_date")
+    private LocalDateTime chequeDate;
+
     public Cheque() {
     }
 
-    public Cheque(int cheque_id, String cheque_status, Account cheque_payee_account, Account cheque_payer_account,
-            double cheque_amount, LocalDateTime cheque_date) {
-        this.cheque_id = cheque_id;
-        this.cheque_status = cheque_status;
-        this.cheque_payee_account = cheque_payee_account;
-        this.cheque_payer_account = cheque_payer_account;
-        this.cheque_amount = cheque_amount;
-        this.cheque_date = cheque_date;
-    }
+	public Cheque(int chequeId, String chequeStatus, Account chequePayeeAccount, Account chequePayerAccount,
+			double chequeAmount, LocalDateTime chequeDate) {
+		super();
+		this.chequeId = chequeId;
+		this.chequeStatus = chequeStatus;
+		this.chequePayeeAccount = chequePayeeAccount;
+		this.chequePayerAccount = chequePayerAccount;
+		this.chequeAmount = chequeAmount;
+		this.chequeDate = chequeDate;
+	}
 
-    public Cheque(String cheque_status, Account cheque_payee_account, Account cheque_payer_account,
-    double cheque_amount, LocalDateTime cheque_date) {
-    this.cheque_status = cheque_status;
-    this.cheque_payee_account = cheque_payee_account;
-    this.cheque_payer_account = cheque_payer_account;
-    this.cheque_amount = cheque_amount;
-    this.cheque_date = cheque_date;
-    }
+	public int getChequeId() {
+		return chequeId;
+	}
 
-    public int getCheque_id() {
-        return cheque_id;
-    }
-    public void setCheque_id(int cheque_id) {
-        this.cheque_id = cheque_id;
-    }
-    public String getCheque_status() {
-        return cheque_status;
-    }
-    public void setCheque_status(String cheque_status) {
-        this.cheque_status = cheque_status;
-    }
-    public Account getCheque_payee_account() {
-        return cheque_payee_account;
-    }
-    public void setCheque_payee_account(Account cheque_payee_account) {
-        this.cheque_payee_account = cheque_payee_account;
-    }
-    public Account getCheque_payer_account() {
-        return cheque_payer_account;
-    }
-    public void setCheque_payer_account(Account cheque_payer_account) {
-        this.cheque_payer_account = cheque_payer_account;
-    }
-    public double getCheque_amount() {
-        return cheque_amount;
-    }
-    public void setCheque_amount(double cheque_amount) {
-        this.cheque_amount = cheque_amount;
-    }
-    public LocalDateTime getCheque_date() {
-        return cheque_date;
-    }
-    public void setCheque_date(LocalDateTime cheque_date) {
-        this.cheque_date = cheque_date;
-    }
+	public void setChequeId(int chequeId) {
+		this.chequeId = chequeId;
+	}
 
-    
+	public String getChequeStatus() {
+		return chequeStatus;
+	}
+
+	public void setChequeStatus(String chequeStatus) {
+		this.chequeStatus = chequeStatus;
+	}
+
+	public Account getChequePayeeAccount() {
+		return chequePayeeAccount;
+	}
+
+	public void setChequePayeeAccount(Account chequePayeeAccount) {
+		this.chequePayeeAccount = chequePayeeAccount;
+	}
+
+	public Account getChequePayerAccount() {
+		return chequePayerAccount;
+	}
+
+	public void setChequePayerAccount(Account chequePayerAccount) {
+		this.chequePayerAccount = chequePayerAccount;
+	}
+
+	public double getChequeAmount() {
+		return chequeAmount;
+	}
+
+	public void setChequeAmount(double chequeAmount) {
+		this.chequeAmount = chequeAmount;
+	}
+
+	public LocalDateTime getChequeDate() {
+		return chequeDate;
+	}
+
+	public void setChequeDate(LocalDateTime chequeDate) {
+		this.chequeDate = chequeDate;
+	}
+
+	@Override
+	public String toString() {
+		return "Cheque [chequeId=" + chequeId + ", chequeStatus=" + chequeStatus + ", chequePayeeAccount="
+				+ chequePayeeAccount + ", chequePayerAccount=" + chequePayerAccount + ", chequeAmount=" + chequeAmount
+				+ ", chequeDate=" + chequeDate + "]";
+	}
+   
 }

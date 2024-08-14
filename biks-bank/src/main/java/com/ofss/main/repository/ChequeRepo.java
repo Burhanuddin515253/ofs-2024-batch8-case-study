@@ -1,5 +1,11 @@
 package com.ofss.main.repository;
 
-public interface ChequeRepo {
-    public String cheque(int payee_cheque_id, int payer_cheque_id, int cheque_amount);
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+import com.ofss.main.domain.Cheque;
+
+@Repository
+public interface ChequeRepo extends CrudRepository<Cheque, Integer> {
+    //public String cheque(int payee_cheque_id, int payer_cheque_id, int cheque_amount);
 }

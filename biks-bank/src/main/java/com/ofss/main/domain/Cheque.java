@@ -28,7 +28,7 @@ public class Cheque {
 	@JoinColumn(name = "payer_account_id")
     private Account chequePayerAccount;
     @Column(name="cheque_amount")
-    private double chequeAmount;
+    private Double chequeAmount;
     @Column(name="cheque_date")
     private LocalDateTime chequeDate;
 
@@ -36,7 +36,7 @@ public class Cheque {
     }
 
 	public Cheque(int chequeId, String chequeStatus, Account chequePayeeAccount, Account chequePayerAccount,
-			double chequeAmount, LocalDateTime chequeDate) {
+			Double chequeAmount, LocalDateTime chequeDate) {
 		super();
 		this.chequeId = chequeId;
 		this.chequeStatus = chequeStatus;
@@ -78,11 +78,11 @@ public class Cheque {
 		this.chequePayerAccount = chequePayerAccount;
 	}
 
-	public double getChequeAmount() {
+	public Double getChequeAmount() {
 		return chequeAmount;
 	}
 
-	public void setChequeAmount(double chequeAmount) {
+	public void setChequeAmount(Double chequeAmount) {
 		this.chequeAmount = chequeAmount;
 	}
 

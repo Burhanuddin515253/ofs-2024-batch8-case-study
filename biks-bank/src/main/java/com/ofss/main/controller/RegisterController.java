@@ -24,6 +24,8 @@ import com.ofss.main.service.ChequeService;
 import com.ofss.main.service.RegistrationService;
 import com.ofss.main.service.TransactionService;
 
+import jakarta.websocket.server.PathParam;
+
 
 @RestController
 @RequestMapping("customer")
@@ -95,13 +97,20 @@ public class RegisterController {
 		return adminService.approve(account.getAccountId());
 	}
 	
+	@GetMapping("inactiveAccounts/{id}")
+	public List<Account> getAccounts(@PathVariable int id) {
+		return adminService.getInactiveAccounts(id);
+	}
 	
+	@GetMapping("issuedCheques")
+	public List<Cheque> getCheques() {
+		return adminService.getCheques();
+	}
 	
-	
-	
-	
-	
-	
+	@PostMapping("clearCheques/{id}/{flag}")
+	public String clearCheques(@PathVariable int id,@PathVariable boolean flag) {
+		return adminService.clearCheque(id, flag);
+	}
 	
 }
 

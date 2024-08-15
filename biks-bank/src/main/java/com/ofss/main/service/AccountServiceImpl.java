@@ -38,6 +38,7 @@ public class AccountServiceImpl implements AccountService{
         	Customer customer = optionalcustomer.get(); 
         	System.out.println("customers are: "+customer);
         	account.setCustomer(customer);
+        	account.setAccountStatus("inactive");
             accountRepo.save(account);
             System.out.println("account created");
             return "true";  

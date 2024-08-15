@@ -1,5 +1,6 @@
 package com.ofss.main.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,6 +13,7 @@ import com.ofss.main.domain.Cheque;
 import com.ofss.main.domain.Customer;
 import com.ofss.main.repository.AccountRepo;
 import com.ofss.main.repository.AdminRepo;
+import com.ofss.main.repository.ChequeRepo;
 import com.ofss.main.repository.RegistrationRepo;
 
 @Service
@@ -22,6 +24,8 @@ public class AdminServiceImpl implements AdminService{
 	RegistrationRepo registrationRepo;
 	@Autowired
 	AccountRepo accountRepo;
+	@Autowired
+	ChequeRepo chequeRepo;
 	
 	@Override
 	public String adminLogin(String admin_login_id, String admin_password) {
@@ -58,6 +62,16 @@ public class AdminServiceImpl implements AdminService{
 		}
 		return "false";
 	}
+	
+	@Override
+	public List<Account> getInactiveAccounts(int customer_id) {
+		Optional<Customer> optionalCustomer = registrationRepo.findById(customer_id);
+		Customer customer = optionalCustomer.get();
+		List<Account> accounts=accountRepo.findByCustomerAndAccountStatus(customer,"inactive");
+		return accounts;
+	}
+	
+	
 
 	@Override
 	public String approve(int accountId) {
@@ -75,6 +89,32 @@ public class AdminServiceImpl implements AdminService{
 		return "false";
 		
 	}
+
+	@Override
+	public List<Cheque> getCheques() {
+		List<Cheque> cheques = chequeRepo.findByChequeStatus("issued");
+		return cheques;
+	}
+
+	@Override
+	public String clearCheque(int cheque_id, boolean flag) {
+		Optional<Cheque> optionalCheque = chequeRepo.findById(cheque_id);
+		if(optionalCheque.isPresent()) {
+			Cheque cheque = optionalCheque.get();
+	        if(flag){
+	            cheque.setChequeStatus("approved");
+	        }else{
+	        	cheque.setChequeStatus("blocked");
+	        }
+	        chequeRepo.save(cheque);
+	        return "true";
+		}
+		return "false";
+	}
+	
+	
+
+
 	
 	
 	

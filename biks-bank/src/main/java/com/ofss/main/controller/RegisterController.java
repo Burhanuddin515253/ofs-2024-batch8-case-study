@@ -14,10 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ofss.main.domain.Account;
+import com.ofss.main.domain.Admin;
 import com.ofss.main.domain.Cheque;
 import com.ofss.main.domain.Customer;
 import com.ofss.main.domain.Transaction;
 import com.ofss.main.service.AccountService;
+import com.ofss.main.service.AdminService;
 import com.ofss.main.service.ChequeService;
 import com.ofss.main.service.RegistrationService;
 import com.ofss.main.service.TransactionService;
@@ -35,6 +37,8 @@ public class RegisterController {
 	private TransactionService transactionService;
 	@Autowired
 	private ChequeService chequeService;
+	@Autowired
+	private AdminService adminService;
 	
 	
 	
@@ -75,6 +79,22 @@ public class RegisterController {
 	public String newCheque(@RequestBody Cheque cheque) {
 		return chequeService.createCheque(cheque);
 	}
+	
+	@PostMapping("adminLogin")
+	public String newCheque(@RequestBody Admin admin) {
+		return adminService.adminLogin(admin.getAdminLoginId(), admin.getAdminPassword());
+	}
+	
+	@PostMapping("adminUnblock")
+	public String adminUnblock(@RequestBody Customer customer) {
+		return adminService.unblock(customer.getCustomerLoginId());
+	}
+	
+	@PostMapping("adminApprove")
+	public String adminApproval(@RequestBody Account account) {
+		return adminService.approve(account.getAccountId());
+	}
+	
 	
 	
 	

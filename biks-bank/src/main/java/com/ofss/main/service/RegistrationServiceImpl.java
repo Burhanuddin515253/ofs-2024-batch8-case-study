@@ -21,6 +21,7 @@ public class RegistrationServiceImpl implements RegistrationService{
     @Override
     public String register(Customer customer) {
         try {
+        	customer.setCustomer_status("active");
             customerRepository.save(customer);
             System.out.println("register true");
             return "success";  // Registration successful
@@ -41,11 +42,12 @@ public class RegistrationServiceImpl implements RegistrationService{
   @Override
 public String login(String customer_login_id, String customer_password) {
         List<Customer> customers = customerRepository.findByCustomerLoginId(customer_login_id);
-        System.out.println("hello"+customer_login_id);
-        System.out.println(customers.get(0));
         if(customers.isEmpty()) {
         	return "customer not found";
         }else {
+        	if(customers.get(0).getCustomer_status().equalsIgnoreCase("inactive")) {
+        		return "Change the status to active through admin";
+        	}
         	if(customers.get(0).getCustomer_password().equals(customer_password)) {
         		return "login successfull";
         	}else {

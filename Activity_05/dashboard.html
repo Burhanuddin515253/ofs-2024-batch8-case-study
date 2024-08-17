@@ -1,0 +1,187 @@
+<!--
+ Copyright (c) 2014, 2024, Oracle and/or its affiliates.
+ Licensed under The Universal Permissive License (UPL), Version 1.0
+ as shown at https://oss.oracle.com/licenses/upl/
+ -->
+
+ 
+ <!-- Activity_02 -->
+ <!-- <div class="oj-hybrid-padding">
+  <h3>Registration</h3>
+  <oj-c-form-layout
+  id="formLayoutOptions"
+  max-columns="4"
+  direction="row"
+  user-assistance-density="compact">
+  <b>Input First Name</b>
+  <oj-c-input-text
+    id="text-input"
+    value="{{firstname}}"
+    label-hint="First Name"
+    label-edge="inside">
+  </oj-c-input-text>
+
+  <b>Input Salary</b>
+  <oj-c-input-number
+    id="input-number"
+    value="{{salary}}"
+    label-hint="Salary"
+    min="0"
+    max="100"
+    step="0">
+  </oj-c-input-number>
+
+  <b>Enter Password</b>
+  <oj-c-input-password
+      id="ipwd"
+      value="{{password}}"
+      label-hint="Enter Password">
+  </oj-c-input-password>
+
+  <b>Enter Date</b>
+  <oj-c-input-date-text value="{{date}}" label-hint="Enter Date"></oj-c-input-date-text>
+
+  <h5>Button</h5>
+  <oj-c-button
+    id="button1"
+    on-oj-action="[[buttonAction]]"
+    disabled="[[firstname()==null || firstname().trim()==='']]"
+    label = "Submit"
+    ></oj-c-button
+  >
+
+  </oj-c-form-layout>
+  </div> -->
+
+
+  <!--Activity_03-->
+  <!--
+  <div class="oj-hybrid-padding">
+-->
+    <!-- Section 1 -->
+     <!--
+    <div class="oj-typography-heading-md oj-sm-margin-5x-bottom">Personal Information</div>
+          
+    <oj-c-message-banner
+      data="[[personalInformationMessages]]"
+      type="section"
+      on-oj-close="[[closePersonalInformationMessage]]"></oj-c-message-banner>
+  
+    <oj-form-layout class="oj-sm-margin-5x-top" direction="row" max-columns="3">
+      <oj-c-input-text label-hint="Employee Name"></oj-c-input-text>
+      <oj-c-input-text label-hint="Employee DOB"></oj-c-input-text>
+      <oj-c-input-text label-hint="Employee Email"></oj-c-input-text>
+    </oj-form-layout>
+  
+    <oj-c-button chroming="outlined" on-oj-action="[[updatePersonalInfo]]" label="Update"></oj-c-button>
+
+    <div class="oj-sm-margin-1x-bottom">Determinate Progress Bar</div>
+    <oj-c-progress-bar
+      class="oj-sm-margin-4x-bottom demo-width"
+      id="progressBar"
+      value="{{progressValue}}"></oj-c-progress-bar>
+  </div>
+-->
+
+
+  <!--Activity_04-->
+  <div class="oj-hybrid-padding">
+    <oj-table
+    id="table"
+    aria-label="Departments Table"
+    accessibility.row-header="depName"
+    data="[[dataprovider]]"
+    selection-mode='{"row": "multiple", "column": "multiple"}'
+    dnd='{"reorder": {"columns": "enabled"}}'
+    scroll-policy="loadMoreOnScroll"
+    scroll-policy-options='{"fetchSize": 10}'
+    columns='[{"headerText": "Department Id", 
+               "field": "DepartmentId",
+               "headerClassName": "oj-sm-only-hide",
+               "className": "oj-sm-only-hide",
+               "resizable": "enabled",
+               "id": "depId"},
+              {"headerText": "Department Name", 
+               "field": "DepartmentName",
+               "resizable": "enabled",
+               "id": "depName"},
+              {"headerText": "Location Id", 
+               "field": "LocationId",
+               "headerClassName": "oj-sm-only-hide",
+               "className": "oj-sm-only-hide",
+               "resizable": "enabled",
+               "id": "locId"},
+              {"headerText": "Manager Id", 
+               "field": "ManagerId",
+               "resizable": "enabled",
+               "id": "manId"},
+              {"headerText": "Employee Count", 
+               "field": "EmployeeCount",
+               "headerClassName": "oj-md-down-hide",
+               "className": "oj-md-down-hide",
+               "resizable": "enabled",
+               "id": "empCount"}]'
+    class="demo-table-container"></oj-table>
+
+
+    <oj-c-list-view
+    id="listview"
+    aria-label="list to show selection features"
+    data="[[dataProvider]]"
+    selection-mode="single"
+    selected="{{selectedItems}}"
+    on-selected-changed="[[handleSelectedChanged]]">
+    <template slot="itemTemplate" data-oj-as="item">
+      <oj-c-list-item-layout>
+        <span class="oj-typography-body-md oj-text-color-primary">
+          <oj-bind-text value="[[item.item.data.name]]"></oj-bind-text>
+        </span>
+        <oj-c-avatar slot="leading" size="xs" src="[[item.item.data.image]]"></oj-c-avatar>
+        <span slot="secondary" class="oj-typography-body-sm oj-text-color-secondary">
+          <oj-bind-text value="[[item.item.data.title]]"></oj-bind-text>
+        </span>
+      </oj-c-list-item-layout>
+    </template>
+  </oj-c-list-view>
+
+  <div class="oj-typography-body-sm oj-text-color-secondary">
+    <br />
+    <label for="curr-selection">Current Selection:&nbsp;</label>
+    <span id="curr-selection-value">
+      <oj-bind-text value="[[getDisplayValue(selectedItems())]]"></oj-bind-text>
+    </span>
+    <br />
+    <br />
+    <label for="selected-item-ids">IDs from Selected Change Event:&nbsp;</label>
+    <span id="selected-item-ids-value">
+      <oj-bind-text value="[[ko.toJSON(selectedIds)]]"></oj-bind-text>
+    </span>
+  </div>
+
+  <div id="filmstrip-navdots-example">
+    <oj-module
+      config="[[ModuleElementUtils.createConfig({name:'filmStrip/filmStripNavDots'})]]"></oj-module>
+  </div>
+
+  <div id="mainContent">
+    <oj-table
+      id="table"
+      aria-label="Departments Table"
+      accessibility.row-header="depName"
+      data="[[restdataprovider]]"
+      columns-default='{"sortable": "disabled"}'
+      columns='[{"headerText": "Id", "field": "id", "id": "id"},
+                {"headerText": "Name", "field": "name", "id": "name"},
+                {"headerText": "Username", "field": "username", "id": "usernam"},
+                {"headerText": "Email", "field": "email", "id": "email"}]'
+      class="demo-table-container"></oj-table>
+  </div>
+  
+
+
+
+
+
+
+  </div>
+

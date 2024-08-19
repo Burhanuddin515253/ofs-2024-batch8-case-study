@@ -1,0 +1,34 @@
+
+
+<div class="oj-hybrid-padding" style="text-align: center;">
+    <!-- <h1>WELCOME TO Acc</h1> -->
+    <div>
+      <h5>Create Account</h5>
+      <div style="padding-inline: 300px;">
+        <oj-c-form-layout id="formLayoutOptions" max-columns="2" direction="column" user-assistance-density="compact">
+          <oj-c-input-text id="text-input" value="{{type}}" label-hint="Enter Account Type  "
+          label-edge="inside"></oj-c-input-text>
+          <oj-c-input-text id="text-input" value="{{rate}}" label-hint="Enter ROI "
+            label-edge="inside"></oj-c-input-text>
+          <oj-c-input-text value="{{balance}}" label-hint="Enter balance" 
+            label-edge="inside"></oj-c-input-text>
+            <oj-c-input-text id="text-input" value="{{minBalance}}" label-hint="Enter minBalance "
+            label-edge="inside"></oj-c-input-text>
+            <oj-c-input-text id="text-input" value="{{overdraft}}" label-hint="Enter overdraft "
+          label-edge="inside"></oj-c-input-text>
+        <oj-c-button  id="button3" on-oj-action="[[createaccountAction]]" label="Create"></oj-c-button>
+        
+          </oj-c-form-layout>
+
+            <!-- Display Success Message -->
+<!-- <div data-bind="if: successMessage">
+    <p style="color: green;" data-bind="text: successMessage"></p>
+  </div> -->
+  
+  <!-- Display Error Message -->
+  <!-- <div data-bind="if: errorMessage">
+    <p style="color: red;" data-bind="text: errorMessage"></p>
+  </div>
+  
+      </div>
+    </div> -->

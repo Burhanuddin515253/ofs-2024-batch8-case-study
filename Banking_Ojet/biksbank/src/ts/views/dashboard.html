@@ -1,0 +1,31 @@
+
+
+<div class="oj-hybrid-padding" style="margin:auto;width: 40%;height:100%;padding: 10px;text-align:left">
+  <oj-form-layout>
+  <h1>Login</h1>
+  <oj-input-text
+  id="username"
+  value="{{username}}"
+  label-hint="Username"
+  label-edge="inside"></oj-input-text>
+
+  <b>password</b>
+  <oj-input-password
+                id="password"
+                value="{{password}}"
+                label-hint="password"
+                mask-icon="visible"></oj-input-password>
+              </oj-form-layout>
+
+  <oj-c-button id="button1" on-oj-action="[[loginAction]]" label="submit"></oj-c-button>
+
+  <!-- Display Success Message -->
+<div data-bind="if: successMessage">
+  <p style="color: green;" data-bind="text: successMessage"></p>
+</div>
+
+<!-- Display Error Message -->
+<div data-bind="if: errorMessage">
+  <p style="color: red;" data-bind="text: errorMessage"></p>
+</div>
+</div>

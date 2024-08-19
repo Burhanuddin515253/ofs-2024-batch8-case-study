@@ -1,0 +1,40 @@
+
+
+<div class="oj-hybrid-padding" style="text-align: center;">
+    <h1>WELCOME TO BANK</h1>
+    <div>
+      <h5>SIGN UP</h5>
+      <div style="padding-inline: 300px;">
+        <oj-c-form-layout id="formLayoutOptions" max-columns="2" direction="column" user-assistance-density="compact">
+          <oj-c-input-text id="text-input" value="{{custname}}" label-hint="Enter First Name  "
+          label-edge="inside"></oj-c-input-text>
+          <oj-c-input-text id="text-input" value="{{username}}" label-hint="Enter username "
+            label-edge="inside"></oj-c-input-text>
+          <oj-c-input-password value="{{password}}" label-hint="Enter password" 
+            label-hint="password"></oj-c-input-password>
+            <oj-c-input-text id="text-input" value="{{email}}" label-hint="Enter Email "
+            label-edge="inside"></oj-c-input-text>
+            <oj-c-input-text id="text-input" value="{{address}}" label-hint="Enter address "
+          label-edge="inside"></oj-c-input-text>
+          <oj-c-input-text id="text-input" value="{{phone}}" label-hint="Enter Contact "
+          label-edge="inside"></oj-c-input-text>
+          <oj-c-input-text id="text-input" value="{{state}}" label-hint="Enter State "
+          label-edge="inside"></oj-c-input-text>
+          <oj-c-input-text id="text-input" value="{{country}}" label-hint="Enter Country "
+          label-edge="inside"></oj-c-input-text>
+        <oj-c-button  id="button2" disabled="[[username()==null || username().trim()==='']]" on-oj-action="[[registerAction]]" label="Register"></oj-c-button>
+        <P>don't have an account? <a href="https://www.w3schools.com">register here</a></P>
+          </oj-c-form-layout>
+
+            <!-- Display Success Message -->
+<div data-bind="if: successMessage">
+    <p style="color: green;" data-bind="text: successMessage"></p>
+  </div>
+  
+  <!-- Display Error Message -->
+  <div data-bind="if: errorMessage">
+    <p style="color: red;" data-bind="text: errorMessage"></p>
+  </div>
+  
+      </div>
+    </div>

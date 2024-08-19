@@ -60,11 +60,11 @@ class RootViewModel {
     }
 
     const navData = [
-      { path: "", redirect: "dashboard" },
-      { path: "dashboard", detail: { label: "Dashboard", iconClass: "oj-ux-ico-bar-chart" } },
-      { path: "incidents", detail: { label: "Incidents", iconClass: "oj-ux-ico-fire" } },
-      { path: "customers", detail: { label: "Customers", iconClass: "oj-ux-ico-contact-group" } },
-      { path: "about", detail: { label: "About", iconClass: "oj-ux-ico-information-s" } }
+      { path: "", redirect: "dashboard" }, 
+      { path: "dashboard", detail: { label: "Login", iconClass: "oj-ux-ico-bar-chart" } },
+      { path: "register", detail: { label: "Register", iconClass: "oj-ux-ico-bar-chart" } },
+      { path: "homePage", detail: { label: "Home Page", iconClass: "oj-ux-ico-bar-chart" } },
+      { path: "accountForm", detail: { label: "Account Form", iconClass: "oj-ux-ico-bar-chart" } },
     ];
     // router setup
     const router = new CoreRouter(navData, {
